@@ -4,14 +4,7 @@
 backend: postgres
 
 # ================================
-#  Database (unified storage)
-# ================================
-database:
-  backend: postgres
-  connection_string: ${DATABASE_URL}
-
-# ================================
-#  Checkpointer
+#  Persistence / Checkpointer
 # ================================
 checkpointer:
   type: postgres
@@ -46,6 +39,6 @@ models:
 skills: {}
 
 # ================================
-#  Channels
+#  Channels (keep your existing)
 # ================================
 channels: {}
