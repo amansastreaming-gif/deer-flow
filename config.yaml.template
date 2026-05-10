@@ -14,7 +14,7 @@ checkpointer:
 #  Sandbox (required by version 9)
 # ================================
 sandbox:
-  type: local
+  use: local
   timeout: 300
 
 # ================================
