@@ -1,10 +1,25 @@
-# config.yaml.template – Template de configuration DeerFlow pour Render
+# ================================
+#  Core Backend
+# ================================
 backend: postgres
 
+# ================================
+#  Persistence / Checkpointer
+# ================================
 checkpointer:
-  backend: postgres
+  type: postgres
   connection_string: ${DATABASE_URL}
 
+# ================================
+#  Sandbox (required by version 9)
+# ================================
+sandbox:
+  type: local
+  timeout: 300
+
+# ================================
+#  Language Models
+# ================================
 models:
   - name: groq-llama
     display_name: Llama 3.3 70B
@@ -18,9 +33,12 @@ models:
     temperature: 0.7
     supports_vision: false
 
-# Conserve ici le reste des sections de l'ancien config.example.yaml
-# (par exemple channels, etc.) sans les modifier, puisque ce sont des réglages
-# qui ne dépendent pas des données sensibles.
-# Tu peux simplement copier-coller les autres sections du fichier config.example.yaml
-# après ce bloc, en prenant soin de ne pas dupliquer backend, checkpointer et models.
-# Si tu ne vois pas d'autres sections, tu peux laisser le fichier comme ceci.
+# ================================
+#  Skills (required by version 9)
+# ================================
+skills: {}
+
+# ================================
+#  Channels (keep your existing)
+# ================================
+channels: {}
