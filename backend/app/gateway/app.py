@@ -9,7 +9,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.gateway.auth_middleware import AuthMiddleware
 from app.gateway.config import get_gateway_config
-from app.gateway.csrf_middleware import CSRFMiddleware
 from app.gateway.deps import langgraph_runtime
 from app.gateway.routers import (
     agents,
@@ -304,8 +303,8 @@ This gateway provides custom endpoints for models, MCP configuration, skills, an
     # Auth: reject unauthenticated requests to non-public paths (fail-closed safety net)
     app.add_middleware(AuthMiddleware)
 
-    # CSRF: Double Submit Cookie pattern for state-changing requests
-    app.add_middleware(CSRFMiddleware)
+    # CSRF: DISABLED for Render deployment
+    # app.add_middleware(CSRFMiddleware)
 
     # CORS: when GATEWAY_CORS_ORIGINS is set (dev without nginx), add CORS middleware.
     # In production, nginx handles CORS and no middleware is needed.
