@@ -1,7 +1,7 @@
 # ================================
 #  Core Backend
 # ================================
-backend: postgres
+backend: sqlite
 
 # ================================
 #  CORS & Trusted Origins
@@ -14,15 +14,15 @@ trusted_origins:
 #  Persistence / Checkpointer
 # ================================
 checkpointer:
-  type: postgres
+  type: sqlite
   connection_string: ${DATABASE_URL}
 
 # ================================
 #  Sandbox (required by version 9)
 # ================================
 sandbox:
-  use: local
-  timeout: 300
+   use: deerflow.sandbox.local:LocalSandboxProvider
+  allow_host_bash: false
 
 # ================================
 #  Language Models
