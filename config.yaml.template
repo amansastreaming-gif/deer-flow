@@ -1,32 +1,7 @@
-# ================================
-#  Core Backend
-# ================================
-backend: sqlite
+config_version: 9
 
-# ================================
-#  CORS & Trusted Origins
-# ================================
-trusted_origins:
-  - https://iasylladevelopper.ndougalma.net
-  - http://localhost:3000
+log_level: info
 
-# ================================
-#  Persistence / Checkpointer
-# ================================
-checkpointer:
-  type: sqlite
-  connection_string: ${DATABASE_URL}
-
-# ================================
-#  Sandbox (required by version 9)
-# ================================
-sandbox:
-   use: deerflow.sandbox.local:LocalSandboxProvider
-  allow_host_bash: false
-
-# ================================
-#  Language Models
-# ================================
 models:
   - name: groq-llama
     display_name: Llama 3.3 70B
@@ -40,12 +15,30 @@ models:
     temperature: 0.7
     supports_vision: false
 
-# ================================
-#  Skills (required by version 9)
-# ================================
-skills: {}
+tool_groups:
+  - name: web
+  - name: file:read
+  - name: file:write
+  - name: bash
 
-# ================================
-#  Channels
-# ================================
-channels: {}
+tools:
+  - name: web_search
+    group: web
+    use: deerflow.community.ddg_search.tools:web_search_tool
+    max_results: 5
+  - name: web_fetch
+    group: web
+    use: deerflow.community.jina_ai.tools:web_fetch_tool
+    timeout: 10
+
+sandbox:
+  use: deerflow.sandbox.local:LocalSandboxProvider
+  allow_host_bash: false
+
+database:
+  backend: sqlite
+  sqlite_dir: .deer-flow/data
+
+trusted_origins:
+  - https://iasylladevelopper.ndougalma.net
+  - http://localhost:3000
