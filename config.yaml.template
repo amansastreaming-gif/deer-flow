@@ -4,6 +4,13 @@
 backend: postgres
 
 # ================================
+#  CORS & Trusted Origins
+# ================================
+trusted_origins:
+  - https://iasylladevelopper.ndougalma.net
+  - http://localhost:3000
+
+# ================================
 #  Persistence / Checkpointer
 # ================================
 checkpointer:
@@ -39,6 +46,6 @@ models:
 skills: {}
 
 # ================================
-#  Channels (keep your existing)
+#  Channels
 # ================================
 channels: {}
